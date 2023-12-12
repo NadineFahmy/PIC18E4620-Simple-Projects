@@ -1,12 +1,9 @@
 /* 
  * File:   application.c
- * Author: Ahmed.Elghafar
- * https://www.linkedin.com/in/ahmedabdelghafarmohammed/
+ * Author: Nadine
  */
 
 #include "application.h"
-
-led_t led1 = {.port_name = PORTC_INDEX, .pin = GPIO_PIN0, .led_status = GPIO_LOW};
 
 button_t btn1 = {
     .button_pin.port = PORTD_INDEX,
@@ -83,7 +80,6 @@ segment_t segment2 = {
     .segment_type = SEGMENT_COMMON_CATHODE
 };
 
-void counter(uint8 seconds);
 void application_intialize(void);
 
 button_state_t resetbtn_read = BUTTON_RELEASED;
@@ -97,8 +93,6 @@ int main() {
     Std_ReturnType ret = E_NOT_OK;
     
     application_intialize();
-    
-    ret = led_initialize(&led1);
     
     ret = seven_segement_intialize(&segment1);
     ret = seven_segement_intialize(&segment2);
@@ -130,28 +124,7 @@ int main() {
         __delay_ms(1000);
     }
 
-//    while(1){
-//        
-//        
-//        if(BUTTON_PRESSED == resetbtn_read){
-//            counter(zero);
-//        }
-//            
-//        
-//        if(BUTTON_PRESSED == rbtn_read){
-//            
-//        }
-//        else{
-//            
-//        }
-//        
-//        if(BUTTON_PRESSED == pbtn_read){
-//            
-//        }
-//        else{
-//            
-//        }
-//    }
+
     return (EXIT_SUCCESS);
 }
 
@@ -159,18 +132,3 @@ void application_intialize(void){
     Std_ReturnType ret = E_NOT_OK;
     ecu_layer_intialize();
 }
-
-//void counter(uint8 seconds){
-//    __delay_ms(100);
-//    resetbtn_read = BUTTON_RELEASED;
-//    rbtn_read  = BUTTON_RELEASED;
-//    pbtn_read  = BUTTON_RELEASED;
-//    
-//    Std_ReturnType ret = E_NOT_OK; 
-//        for(uint8 counter = 0 ; counter <= 99; counter++){
-//        ret = seven_segement_write_number((&segment1), ( (uint8)(counter%10) ) );     
-//        ret = seven_segement_write_number((&segment2), ( (uint8)(counter/10) ) );
-//        __delay_ms(1000);
-//    
-//} 
-//}
